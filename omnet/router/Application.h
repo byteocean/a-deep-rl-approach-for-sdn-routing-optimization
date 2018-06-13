@@ -25,6 +25,7 @@
 
 
 using namespace std;
+using namespace omnetpp;
 
 /**
  * TODO - Generated class
