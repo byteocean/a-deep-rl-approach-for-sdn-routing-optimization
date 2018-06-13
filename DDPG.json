@@ -7,7 +7,7 @@
     "ENV": "label",
     "EPISODE_COUNT": 100,
     "EXPLORE": 0.8,
-    "GAMMA": 0.99,
+    "GAMMA": 0.98,
     "HACTI": "selu",
     "HIDDEN1_UNITS": 91,
     "HIDDEN2_UNITS": 42,
