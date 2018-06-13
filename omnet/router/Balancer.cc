@@ -55,7 +55,7 @@ void Balancer::handleMessage(cMessage *msg)
     DataPacket *data = check_and_cast<DataPacket *>(msg);
 
     if (id == data->getDstNode()) {
-        ev << this->getFullPath() << "  Message received" << endl;
+        EV << this->getFullPath() << "  Message received" << endl;
         simtime_t delayPaquet= simTime() - data->getCreationTime();
         Statistic::instance()->setDelay(simTime(), data->getSrcNode(), id, delayPaquet.dbl());
         delete msg;
@@ -70,7 +70,7 @@ void Balancer::handleMessage(cMessage *msg)
 
         send(msg, "out", destPort);
 
-        ev << "Balancing: " << this->getFullPath() << "  Source: " << data->getSrcNode() << " Dest: " << data->getDstNode()
+        EV << "Balancing: " << this->getFullPath() << "  Source: " << data->getSrcNode() << " Dest: " << data->getDstNode()
                 << " using port: "<< destPort << endl;
 
     }

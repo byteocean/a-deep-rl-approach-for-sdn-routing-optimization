@@ -352,7 +352,7 @@ class OmnetLinkweightEnv():
 
         all_shortest = dict(nx.all_pairs_dijkstra_path(self.graph))
         
-        print(all_shortest)
+       # print(all_shortest)
         for s in range(self.ACTIVE_NODES):
             for d in range(self.ACTIVE_NODES):
                 if s != d:

@@ -110,7 +110,7 @@ void Application::handleMessage(cMessage *msg)
         interArrival->setLambda(1.0/lambda);
         if (dest != id)
             scheduleAt(simTime() + 1.0/lambda, interArrival);
-        ev << "Ratio: " << flowRatio << "   lambda: " << lambda << endl;
+        EV << "Ratio: " << flowRatio << "   lambda: " << lambda << endl;
 
         delete data;
 

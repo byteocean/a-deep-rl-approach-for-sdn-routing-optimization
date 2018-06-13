@@ -25,7 +25,7 @@ using namespace std;
 #include <sstream>
 #include <cstring>
 #include <string>
-
+using namespace omnetpp;
 /**
  * TODO - Generated class
  */
