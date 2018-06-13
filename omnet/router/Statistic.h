@@ -26,7 +26,7 @@
 #include <string>
 
 using namespace std;
-
+using namespace omnetpp;
 
 class Statistic {
 
