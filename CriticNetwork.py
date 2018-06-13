@@ -4,9 +4,9 @@ CriticNetwork.py
 __author__ = "giorgio@ac.upc.edu"
 __credits__ = "https://github.com/yanpanlau"
 
-from keras.initializations import normal, glorot_normal
+from keras.initializers import normal, glorot_normal
 from keras.activations import relu
-from keras.layers import Dense, Input, merge, BatchNormalization
+from keras.layers import Dense, Input, merge, BatchNormalization,Add
 from keras.models import Model
 from keras.optimizers import Adam
 from keras.regularizers import l2
@@ -55,12 +55,12 @@ class CriticNetwork(object):
     def create_critic_network(self, state_size, action_dim):
         S = Input(shape=[state_size], name='c_S')
         A = Input(shape=[action_dim], name='c_A')
-        w1 = Dense(self.HIDDEN1_UNITS, activation=self.h_acti, init=glorot_normal, name='c_w1')(S)
-        a1 = Dense(self.HIDDEN2_UNITS, activation='linear', init=glorot_normal, name='c_a1')(A)
-        h1 = Dense(self.HIDDEN2_UNITS, activation='linear', init=glorot_normal, name='c_h1')(w1)
-        h2 = merge([h1, a1], mode='sum', name='c_h2')
-        h3 = Dense(self.HIDDEN2_UNITS, activation=self.h_acti, init=glorot_normal, name='c_h3')(h2)
-        V = Dense(action_dim, activation='linear', init=glorot_normal, name='c_V')(h3)
+        w1 = Dense(self.HIDDEN1_UNITS, activation=self.h_acti, init=glorot_normal(), name='c_w1')(S)
+        a1 = Dense(self.HIDDEN2_UNITS, activation='linear', init=glorot_normal(), name='c_a1')(A)
+        h1 = Dense(self.HIDDEN2_UNITS, activation='linear', init=glorot_normal(), name='c_h1')(w1)
+        h2 = Add()([h1, a1])
+        h3 = Dense(self.HIDDEN2_UNITS, activation=self.h_acti, init=glorot_normal(), name='c_h3')(h2)
+        V = Dense(action_dim, activation='linear', init=glorot_normal(), name='c_V')(h3)
         model = Model(input=[S, A], output=V)
         adam = Adam(lr=self.LEARNING_RATE)
         model.compile(loss='mse', optimizer=adam)

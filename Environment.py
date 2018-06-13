@@ -345,13 +345,14 @@ class OmnetLinkweightEnv():
         for e, w in zip(self.graph.edges(), self.env_W):
             weights[e] = w
 
-        nx.set_edge_attributes(self.graph, 'weight', weights)
+        nx.set_edge_attributes(self.graph, name='weight', values=weights)
 
         routing_nodes = np.full([self.ACTIVE_NODES]*2, -1.0, dtype=int)
         routing_ports = np.full([self.ACTIVE_NODES]*2, -1.0, dtype=int)
 
-        all_shortest = nx.all_pairs_dijkstra_path(self.graph)
-
+        all_shortest = dict(nx.all_pairs_dijkstra_path(self.graph))
+        
+        print(all_shortest)
         for s in range(self.ACTIVE_NODES):
             for d in range(self.ACTIVE_NODES):
                 if s != d:

@@ -4,7 +4,7 @@ ActorNetwork.py
 __author__ = "giorgio@ac.upc.edu"
 __credits__ = "https://github.com/yanpanlau"
 
-from keras.initializations import normal, glorot_normal
+from keras.initializers import normal, glorot_normal
 from keras.activations import relu
 from keras.layers import Dense, Input, BatchNormalization
 from keras.models import Model
@@ -61,9 +61,9 @@ class ActorNetwork(object):
 
     def create_actor_network(self, state_size, action_dim):
         S = Input(shape=[state_size], name='a_S')
-        h0 = Dense(self.HIDDEN1_UNITS, activation=self.h_acti, init=glorot_normal, name='a_h0')(S)
-        h1 = Dense(self.HIDDEN2_UNITS, activation=self.h_acti, init=glorot_normal, name='a_h1')(h0)
+        h0 = Dense(self.HIDDEN1_UNITS, activation=self.h_acti, init=glorot_normal(), name='a_h0')(S)
+        h1 = Dense(self.HIDDEN2_UNITS, activation=self.h_acti, init=glorot_normal(), name='a_h1')(h0)
         # https://github.com/fchollet/keras/issues/374
-        V = Dense(action_dim, activation=self.acti, init=glorot_normal, name='a_V')(h1)
+        V = Dense(action_dim, activation=self.acti, init=glorot_normal(), name='a_V')(h1)
         model = Model(input=S, output=V)
         return model, model.trainable_weights, S
