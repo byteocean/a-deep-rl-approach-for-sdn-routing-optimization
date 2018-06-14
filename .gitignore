@@ -12,3 +12,4 @@ omnet/*/messages/*.cc
 omnet/*/messages/*.h
 omnet/*/NetworkAll*
 traffic/
+.pydevproject
